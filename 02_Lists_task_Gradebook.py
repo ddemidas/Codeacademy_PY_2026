@@ -66,7 +66,12 @@ Our instructor just told us they made a mistake grading and are rewarding an ext
 
 Access the index of the grade for your visual arts class and modify it to be 5 points greater.
 '''
-gradebook[5][1]=98
+#a hint from AI code review:
+'''
+Accessing gradebook[5][1] assumes a fixed position; consider computing the index dynamically or validating before assignment to avoid potential errors if the list length changes.
+'''
+print(len(gradebook))
+gradebook[len(gradebook)-1][1]=gradebook[len(gradebook)-1][1]+5
 print("Gradebook is: ")
 print(gradebook)
 '''
