@@ -1,5 +1,6 @@
 # we input our word here
 usr_s = input("Please enter the word to be checked if it is a palindrome: ")
+usr_s = usr_s.lower()
 
 # we calculate the length of our input
 length = len(usr_s)
