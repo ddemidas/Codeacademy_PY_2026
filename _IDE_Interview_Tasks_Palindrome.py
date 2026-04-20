@@ -7,7 +7,6 @@ length = len(usr_s)
 # we perform integer division here with the operator double forward slash //
 # mod division is being done with percentage sign %
 # it is like div and mod in Pascal
-# Если количество символов нечетно, то стоящий в середине
 # if number of characters in our word is odd (not even) then the obsolete middle character is unimportant
 # the middle character will be equal to itself
 half_length = length // 2
