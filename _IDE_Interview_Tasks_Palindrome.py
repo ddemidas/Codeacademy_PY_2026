@@ -28,3 +28,5 @@ for i in range(half_length):
 
 #If the loop is over without triggering bool_checker as True then our word is a palindrome
 print("It's a palindrome")
+
+#this file works in PyCharm. Branch PY_2026
