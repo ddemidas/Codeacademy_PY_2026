@@ -26,3 +26,18 @@ for location in sales_data:
   for value in location:
     scoops_sold += value
 print("scoops sold: " + str(scoops_sold))
+
+'''
+Let’s replicate a function you are already familiar with, len().
+
+Write a new function called get_length() that takes a string as an input and returns the number of characters in that string. Do this by iterating through the string. Do not use the len() function!
+'''
+word = "Karankenversicherungbeitragsrückerstattung"
+def get_length(word):
+  word_length = 0
+  for letter in word:
+    word_length += 1
+  return word_length
+
+print("The length of my favotite word is: " + str(get_length(word)))
+
