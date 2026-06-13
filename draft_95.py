@@ -8,3 +8,11 @@ def print_some_characters(word):
       print(word[i])
 
 print_some_characters("watermelon")
+
+thread_sold = ['white', 'white&blue']
+print(thread_sold)
+
+for i in thread_sold:
+    print(i.find('&'))
+
+
