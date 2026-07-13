@@ -1,3 +1,5 @@
+#inspired by https://github.com/VTickner/codecademy-data-engineer/tree/main/python-fundamentals 
+
 #3. Create time_travelers_toolkit.py
 #4. Import datetime with alias dt, import Decimal, randint and choice 
 import datetime as dt
