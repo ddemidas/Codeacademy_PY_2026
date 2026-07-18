@@ -49,6 +49,8 @@ word = input("Please enter the word to be calculated for value: ")
 #word = "Aquarius"
 word = word.upper()
 
+
+
 letter_to_points = {key:value for key, value in zip(letters, points)}
 print("======Project Build your Point Dictionary======")
 print("Task1")
@@ -69,3 +71,71 @@ def f_score_word(word):
 
 print("Let us test our funtion f_score_word for te word " + str(word)+":")
 print(f_score_word(word))
+
+'''
+Task9
+Create a dictionary called player_to_words that maps players to a list of the words they have played. This table represents the data to transcribe into your dictionary:
+'''
+
+print("Task9")
+player_to_words = {}
+
+player_to_words.update({"player1":["BLUE","TENNIS","EXIT"], "wordNerd":["EARTH","EYES","MACHINE"], "Lexi Con": ["ERASER","BELLY","HUSKY"], "Prof Reader": ["ZAP", "COMA", "PERIOD"]})
+
+print("player_to_words: ")
+print(player_to_words)
+
+'''
+Task10, Task11, 
+Create an empty dictionary called player_to_points.
+Iterate through the items in player_to_words. Call each player player and each list of words words.
+Within your loop, create a variable called player_points and set it to 0.
+Within the loop, create another loop that goes through each word in words and adds the value of score_word() with word as an input.
+After the inner loop ends, set the current player value to be a key of player_to_points, with a value of player_points.
+player_to_points should now contain the mapping of players to how many points they’ve scored. Print this out to see the current standings for this game!
+If you’ve calculated correctly, wordNerd should be winning by 1 point.
+
+'''
+
+print("Task10, Task11, Task12, Task13, Task14")
+player_to_points = {}
+
+for player, words in player_to_words.items():
+  player_points = 0
+  
+  for word in words:
+    player_points += f_score_word(word)
+  #print("This player " + str(player) + " has " +str(player_points) + " points")
+  #print(player)
+  player_to_points.update({player:player_points})
+print("player_to_points: ")
+print(player_to_points)
+
+'''
+Task15
+If you want extended practice, try to implement some of these ideas with the Python you’ve learned:
+- play_word() — a function that would take in a player and a word, and add that word to the list of words they’ve played
+- update_point_totals() — turn your nested loops into a function that you can call any time a word is played
+- make your letter_to_points dictionary able to handle lowercase inputs as well
+'''
+
+print("Task15")
+
+def f_play_word(player, word):
+    word = word.upper()
+    player = player.title()
+    if player in player_to_words:
+        player_to_words[player].append(word)
+    else:
+        player_to_words[player] = [word]
+    return player, word
+
+def f_play_round():
+  player = input("Enter player's name: ")
+  word = input(f"Enter {player}'s word to calculate their points score: ")
+  f_play_word(player, word)
+
+f_play_round()
+
+print("player_to_words: ")
+print(player_to_words)
