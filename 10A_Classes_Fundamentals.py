@@ -218,3 +218,298 @@ class Rules:
 
   def washing_brushes (self):
     return self.motto
+
+"""
+7/14
+Methods can also take more parameters than just self:
+"""
+class DistanceConverter:
+  kms_in_a_mile = 1.609
+  def how_many_kms(self, miles):
+    return miles * self.kms_in_a_mile
+
+converter = DistanceConverter()
+kms_in_5_miles = converter.how_many_kms(5)
+print(kms_in_5_miles)
+# prints 8.045
+"""
+In the example, we defined a DistanceConverter class, instantiated it, and used it to convert 5 miles into kilometers. Notice again that even though how_many_kms takes two parameters in its definition, we only 
+pass
+Preview: Docs Acts as a placeholder in Python code, allowing empty code blocks to run without causing errors.
+ miles, because self is implicitly passed (and refers to the object converter).
+"""
+"""
+#Task1, #Task2, #Task3, #Task4
+It’s March 14th (known in some places as Pi Day) at Jan van High, and you’re feeling awfully festive. You decide to create a program that calculates the area of a circle.
+Create a Circle class with a class variable pi. Set pi to the approximation 3.14.
+
+Give Circle an area method that takes two parameters: self and radius.
+
+Return the area as given by this formula:
+area = pi * radius ** 2
+
+Create an instance of Circle. Save it into the variable circle.
+
+You go to measure several circles you happen to find around.
+
+A medium pizza that is 12 inches across
+Your teaching table, which is 36 inches across
+The Round Room auditorium, which is 11460 inches across
+You save the areas of these three things into pizza_area, teaching_table_area, and round_room_area.
+
+Remember that the radius of a circle is half the diameter. We gave three diameters here, so halve them before you calculate the given circle’s area.
+"""
+class Circle():
+  pi = 3.14
+  def area(self, radius):
+    area = (self.pi)*(radius)**2
+    return area
+
+circle = Circle()
+print(type(circle))
+
+def radius(across):
+  radius = ((across)/2)
+  return radius
+
+#print(radius(14))
+
+across_pizza = 12
+across_teaching_table = 36
+across_auditorium = 11460
+
+pizza_area = circle.area(radius(across_pizza))
+print("pizza_area: ")
+print(pizza_area)
+
+teaching_table_area = circle.area(radius(across_teaching_table))
+print("teaching_table_area: ")
+print(teaching_table_area)
+
+round_room_area = circle.area(radius(across_auditorium))
+print("round_room_area: ")
+print(round_room_area)
+
+"""
+8/14
+
+Introduction to Classes
+Constructors
+12 min
+There are several methods that we can define in a Python class that have special behavior. These methods are sometimes called magic, because they behave differently 
+from
+Preview: Docs Used to import specific attributes, classes, or functions from a Python module.
+ regular methods. Another popular term is 
+dunder methods
+Preview: Docs Loading link description
+, so named because they have two underscores (double underscore abbreviated to “dunder”) on either side of them.
+
+The first dunder method we’re going to use is the 
+__init__()
+Preview: Docs Loading link description
+ method (note the two underscores before and after the word “init”). This method is used to initialize a newly created object. It is called every time the class is instantiated.
+
+Methods that are used to prepare an object being instantiated are called constructors. The word “constructor” is used to describe similar features in other object-oriented programming languages, but programmers who refer to a constructor in Python are usually talking about the __init__() method.
+"""
+class Shouter:
+  def __init__(self):
+    print("HELLO?!")
+
+shout1 = Shouter()
+# prints HELLO?!
+
+shout2 = Shouter()
+# prints HELLO?!
+"""
+In the preceding example, we created a class called Shouter, and every time we create an instance of Shouter, the program prints out a shout. Don’t worry, this doesn’t hurt the computer at all.
+
+Pay careful attention to the instantiation syntax we use. Shouter() looks a lot like a function call, doesn’t it? If it’s a function, can we 
+pass
+Preview: Docs Loading link description
+ arguments to it? We absolutely can, and those arguments will be received by the __init__() method.
+"""
+class Shouter:
+  def __init__(self, phrase):
+    # make sure phrase is a string
+    if type(phrase) == str:
+
+      # then shout it out
+      print(phrase.upper())
+
+shout1 = Shouter("shout")
+# prints SHOUT
+
+shout2 = Shouter("shout")
+# prints SHOUT
+
+shout3 = Shouter("let it all out")
+# prints LET IT ALL OUT
+"""
+In the preceding example, we’ve updated our Shouter class to take the additional parameter phrase. When we created each of our objects, we passed an argument to the constructor. The constructor takes the argument phrase and, if it’s a string, prints out the all-caps version of phrase.
+"""
+"""
+#Task1
+Add a constructor to our Circle class.
+Since we seem more frequently to know the diameter of a circle, it should take the parameter diameter.
+It doesn’t need to do anything yet; just write pass in the body of the constructor.
+"""
+class Circle:
+  pi = 3.14
+  
+  # Add constructor here:
+  def __init__(self, diameter):
+    pass
+"""
+#Task2
+Now have the constructor print out the message New circle with diameter: {diameter} when a new circle is created.
+Create a circle teaching_table with a diameter of 36.
+"""
+class Circle:
+    pi = 3.14
+    
+    def __init__(self, diameter):
+        self.diameter = diameter
+        print("New circle with diameter: " + str(self.diameter))
+
+# Create a circle teaching_table with diameter 36
+teaching_table = Circle(36)
+"""
+9/14
+Introduction to Classes
+Instance Variables
+9 min
+We’ve learned so far that a class is a schematic for a data type and an object is an instance of a class, but why is there such a strong need to differentiate the two if each object can only have the methods and class 
+variables
+Preview: Docs Variables are used to store data that can be used and manipulated throughout a program.
+ the class has? This is because each instance of a class can hold different kinds of data.
+The data held by an object is referred to as an instance variable. Instance variables aren’t shared by all instances of a class — they are variables that are specific to the object they are attached to.
+Let’s say that we have the following class definition:
+"""
+"""
+We can instantiate two different objects 
+from
+Preview: Docs Loading link description
+ this class, fake_dict1 and fake_dict2, and assign instance variables to these objects using the same attribute notation that was used for accessing class variables.
+"""
+class FakeDict:
+  pass
+  
+fake_dict1 = FakeDict()
+fake_dict2 = FakeDict()
+
+fake_dict1.fake_key = "This works!"
+fake_dict2.fake_key = "This too!"
+
+# Let's join the two strings together!
+working_string = "{} {}".format(fake_dict1.fake_key, fake_dict2.fake_key)
+print(working_string)
+# prints This works! This too!
+
+"""
+#Task1
+
+In script.py, we have defined a Store class. Create two objects from this store class, named alternative_rocks and isabelles_ices.
+"""
+"""
+#Task2
+Give them both instance attributes called .store_name. Set the .store_name of alternative_rocks to "Alternative Rocks". Set the .store_name of isabelles_ices to "Isabelle's Ices".
+"""
+class Store:
+  pass
+
+alternative_rocks = Store()
+isabelles_ices = Store()
+
+alternative_rocks.store_name = "Alternative Rocks"
+isabelles_ices.store_name = "Isabelle's Ices"
+
+
+"""
+10/14
+Instance 
+variables
+Preview: Docs Loading link description
+and class variables are both accessed similarly in Python. This is no mistake — they are both considered attributes of an object. If we attempt to access an attribute that is neither a class variable nor an instance variable of the object, Python will throw an AttributeError.
+"""
+
+class NoCustomAttributes:
+  pass
+
+attributeless = NoCustomAttributes()
+
+try:
+  attributeless.fake_attribute
+except AttributeError:
+  print("This text gets printed!")
+
+# prints This text gets printed!
+
+"""
+What if we aren’t sure if an object has an attribute or not? 
+hasattr()
+Preview: Docs Loading link description
+ will 
+return
+Preview: Docs Loading link description
+ True if an object has a given attribute and False otherwise. If we want to get the actual value of the attribute, 
+getattr()
+Preview: Docs Loading link description
+ is a Python function that will return the value of a given object and attribute. In this function, we can also supply a third argument that will be the default if the object does not have the given attribute.
+
+The syntax and parameters for these 
+functions
+Preview: Docs Loading link description
+ look like this:
+
+hasattr(object, "attribute") has two parameters:
+
+object: the object we are testing to see if it has a certain attribute
+attribute: the name of the attribute we want to see if it exists
+getattr(object, "attribute", default) has three parameters (one of which is optional):
+
+object: the object whose attribute we want to evaluate
+attribute: the name of the attribute we want to evaluate
+default: the value that is returned if the attribute does not exist (note: this parameter is optional)
+Calling those functions looks like this:
+"""
+hasattr(attributeless, "fake_attribute")
+# returns False
+
+getattr(attributeless, "other_fake_attribute", 800)
+# returns 800, the default value
+"""
+Above, we checked if the attributeless object has the attribute .fake_attribute. Since it does not, hasattr() returned False. After that, we used getattr() to attempt to retrieve .other_fake_attribute. Since .other_fake_attribute isn’t a real attribute on attributeless, our call to getattr() returned the supplied default value 800, instead of throwing an AttributeError.
+"""
+"""
+#Task1
+In script.py, we have a list of different data types: a dictionary, a string, an integer, and a list, all saved in the variable can_we_count_it.
+For every element in can_we_count_it, check if the element has the attribute .count using the hasattr() function. If so, print the following line of code:
+"""
+"""
+#Task2
+Now let’s add an else statement for the elements that do not have the attribute .count. In this else statement add the following line of code:
+"""
+can_we_count_it = [{'s': False}, "sassafrass", 18, ["a", "c", "s", "d", "s"]]
+for element in can_we_count_it:
+  if hasattr(element, "count"):
+    print(str(type(element)) + " has the count attribute!")
+  else:
+    print(str(type(element)) + " does not have the count attribute :(")
+
+"""
+Let’s go over the terminal output of the past two instructions. You should see the following output in your terminal right now:
+
+<class 'dict'> does not have the count attribute :(
+<class 'str'> has the count attribute!
+<class 'int'> does not have the count attribute :(
+<class 'list'> has the count attribute!
+
+Copy to Clipboard
+
+This is because dictionaries and integers both do not have a .count attribute, while strings and lists do. In this exercise, we have iterated through can_we_count_it and used hasattr() to determine which elements have a .count attribute. We never actually used the .count() method, but you can read more about it in the 
+Python list count() documentation
+Preview: Docs Returns the number of occurrences of a specified element in a list.
+ if you are curious about what it is.
+
+Select “Run” to move on to the next exercise!
+"""
